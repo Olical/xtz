@@ -31,4 +31,19 @@
             }
         );
     }
+    
+    // Build the namespace to export and export it
+    // If AMD is available then fire that too
+    var namespace = {
+        DateInterface: DateInterface,
+        dateInterfaces: dateInterfaces
+    };
+    
+    exports.xtz = namespace;
+    
+    if(typeof define === 'function' && define.amd) {
+        define(function() {
+            return namespace;
+        });
+    }
 }(this));
