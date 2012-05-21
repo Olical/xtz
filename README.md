@@ -11,17 +11,17 @@ First include your scripts, first moment and then xtz. I would recommend placing
     <script type='text/javascript' src='javascript/moment.js'></script>
     <script type='text/javascript' src='javascript/xtz.js'></script>
 
-Now in your code you can initiate an instance of `DateConverter`.
+Now in your code you can initiate an instance of `xtz.DateConverter`.
 
-    var converter = new DateConverter();
+    var converter = new xtz.DateConverter();
 
 All you have to do now is execute it. I am using the [MooTools](http://mootools.net/) selector engine to find the elements but you can use anything you want. You can pass an array of elements or a single element.
 
     converter.run($$('span.my-date'));
 
-Now in your HTML any date in a span with a class of `my-date` will be converted to the local time. It will be converted to the default format: `Do MMMM, YYYY [at] h:mma`. To change this you can either pass false for the custom interface and then a string like so.
+Now in your HTML, any date in a span with a class of `my-date` will be converted to the local time. It will be converted to the default date format: `Do MMMM, YYYY [at] h:mma`. To change this you can either pass false for the custom interface and then a string like so.
 
-    var converter = new DateConverter(false, 'YYYY HH:mm');
+    var converter = new xtz.DateConverter(false, 'YYYY HH:mm');
 
 Or you can specify `data-format` on the individual elements. So here are a couple of example date elements.
 
