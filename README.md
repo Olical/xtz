@@ -2,6 +2,8 @@
 
 xtz is a library for converting dates on your page to the users local time. It supports any date library through a date interface which is incredibly easy to set up. All you have to do is pass it your elements and it will convert them to the local time found in the browser.
 
+To get started have a look at the quickstart section below. For a more in depth understanding I recommend browsing the source in `xtz.js` or `testing.html`.
+
 ## Quickstart
 
 This will guide you through setting up xtz as quick as possible. It will use [moment.js](http://momentjs.com/) as it's date library. Check the dependencies section if you would like to use something else.
