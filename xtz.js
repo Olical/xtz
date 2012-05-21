@@ -63,7 +63,7 @@
         }
         else {
             // 1st January, 2002 at 10:00pm
-            this.format = 'Do MMMM, YYYY [at] hh:mma';
+            this.format = 'Do MMMM, YYYY [at] h:mma';
         }
     }
     
