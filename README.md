@@ -57,6 +57,10 @@ The script only requires a date library. By default it is configured to use [mom
 
 By copying and editing the code above you can integrate it with any library that can parse, format and validate a date.
 
+## Browser compatibility
+
+I test it at the moment by running `testing.html` in [BrowserStack](http://www.browserstack.com). It works perfectly in all modern browsers as well as IE6+. Please bear in mind that these tests only use moment.js and XDate. If it isn't working and you are using some other library then it is probably that date library or your config. Not xtz.
+
 ## License
 
 [![Creative Commons License](http://i.creativecommons.org/l/by/3.0/88x31.png)](http://creativecommons.org/licenses/by/3.0/)
