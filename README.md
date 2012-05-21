@@ -1,1 +1,1 @@
-# xtz - Localizes your pages times
+# xtz - Localize your pages times
