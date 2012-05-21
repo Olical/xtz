@@ -7,6 +7,7 @@
     <body>
         <p>So this is an element with an American time. The time is <span class='date-normal'>27 January, 2000 10:00:00 CST</span>, got it? Good.</p>
         <p>Now here is the same with a format on the element: <span class='date-normal' data-format='DD/MM/YYYY - HH:mm'>27 January, 2000 10:00:00 CST</span> - good?</p>
+        <p>Custom default string: <span class='date-custom-default'>27 January, 2000 10:00:00 CST</span></p>
         
         <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools.js'></script>
         <script type='text/javascript' src='https://raw.github.com/timrwood/moment/1.6.2/moment.js'></script>
@@ -14,6 +15,9 @@
         <script type='text/javascript'>
             var normal = new xtz.DateConverter();
             normal.run($$('.date-normal'));
+            
+            var customDefault = new xtz.DateConverter(false, '-HH:mm-');
+            customDefault.run($$('.date-custom-default'));
         </script>
     </body>
 </html>
