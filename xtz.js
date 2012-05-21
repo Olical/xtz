@@ -7,11 +7,13 @@
      *
      * @param {Function} parse Called when parsing a date, is passed the date string
      * @param {Function} format Called when displaying the date, is passed the returned value from parse and a formatting string
+     * @param {Function} valid Used to validate a date object returned by parse, return true if it is valid, false if not
      */
-    function DateInterface(parse, format) {
+    function DateInterface(parse, format, valid) {
         // Store the methods
         this.parse = parse;
         this.format = format;
+        this.valid = valid;
     }
     
     // If moment.js is loaded then create an interface for it
@@ -28,6 +30,10 @@
             function(date, format) {
                 // Formating
                 return date.format(format);
+            },
+            function(date) {
+                // Validating
+                return !isNaN(date.unix());
             }
         );
     }
@@ -38,8 +44,9 @@
      * So you can call it when your library says the DOM is ready
      *
      * @param {DateInterface} di An optional interface for your date library, defaults to moment.js
+     * @param {String} format An optional default format for dates to display with
      */
-    function DateConverter(di) {
+    function DateConverter(di, format) {
         // If there is a date interface then store it
         // If not, use the default moment.js interface
         if(typeof di !== 'undefined') {
@@ -47,6 +54,16 @@
         }
         else {
             this.di = dateInterfaces.moment;
+        }
+        
+        // Store the default format
+        // If it is not there then create a default default
+        if(typeof format !== 'undefined') {
+            this.format = format;
+        }
+        else {
+            // 1st January, 2002 at 10:00pm
+            this.format = 'Do MMMM, YYYY [at] hh:mma';
         }
     }
     
@@ -56,7 +73,17 @@
      * @param {Element} el The element to convert
      */
     DateConverter.prototype.convert = function(el) {
+        // Parse the current date
+        var raw = el.innerHTML,
+            date = this.di.parse(raw);
         
+        // Output it back in with the correct format if the date is valid
+        if(this.di.valid(date)) {
+            el.innerHTML = this.di.format(date, this.format);
+        }
+        else {
+            throw '"' + raw + '"' + ' is not a valid date.';
+        }
     };
     
     /**
