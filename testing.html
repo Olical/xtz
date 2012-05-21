@@ -13,9 +13,11 @@
         <script type='text/javascript' src='https://raw.github.com/timrwood/moment/1.6.2/moment.js'></script>
         <script type='text/javascript' src='xtz.js'></script>
         <script type='text/javascript'>
+            // Basic
             var normal = new xtz.DateConverter();
             normal.run($$('.date-normal'));
             
+            // Custom default date format
             var customDefault = new xtz.DateConverter(false, '-HH:mm-');
             customDefault.run($$('.date-custom-default'));
         </script>
