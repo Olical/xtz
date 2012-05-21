@@ -37,15 +37,11 @@
      * Will not run until you explicitly call `run` on it
      * So you can call it when your library says the DOM is ready
      *
-     * @param {Array|Element} els An element or array of elements that should be converted
      * @param {DateInterface} di An optional interface for your date library, defaults to moment.js
      */
-    function DateConverter(els, di) {
-        // Store the passed element(s)
-        this.els = els;
-        
+    function DateConverter(di) {
         // If there is a date interface then store it
-        // If not, use the default moment.js one
+        // If not, use the default moment.js interface
         if(typeof di !== 'undefined') {
             this.di = di;
         }
@@ -53,6 +49,34 @@
             this.di = dateInterfaces.moment;
         }
     }
+    
+    /**
+     * Converts an individual element
+     *
+     * @param {Element} el The element to convert
+     */
+    DateConverter.prototype.convert = function(el) {
+        
+    };
+    
+    /**
+     * Executes the date converter
+     * Call this when the DOM is ready with your element(s)
+     *
+     * @param {Array|Element} els An element or array of elements that should be converted
+     */
+    DateConverter.prototype.run = function(els) {
+        // If els is an array then loop and execute
+        // Otherwise just run the single element
+        if(els instanceof Array) {
+            for(var i = 0; i < els.length; i += 1) {
+                this.convert(els[i]);
+            }
+        }
+        else {
+            this.convert(els);
+        }
+    };
     
     // Build the namespace to export and export it
     // If AMD is available then fire that too
