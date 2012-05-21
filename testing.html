@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>xtz testing</title>
+    </head>
+    
+    <body>
+        <p>So this is an element with an American time. The time is <span class='date-normal'>27 January, 2000 10:00:00 CST</span>, got it? Good.</p>
+        
+        <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools.js'></script>
+        <script type='text/javascript' src='https://raw.github.com/timrwood/moment/1.6.2/moment.js'></script>
+        <script type='text/javascript' src='xtz.js'></script>
+        <script type='text/javascript'>
+            var normal = new xtz.DateConverter();
+            normal.run($$('.date-normal'));
+        </script>
+    </body>
+</html>

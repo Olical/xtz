@@ -79,7 +79,7 @@
         
         // Output it back in with the correct format if the date is valid
         if(this.di.valid(date)) {
-            el.innerHTML = this.di.format(date, this.format);
+            el.innerHTML = this.di.format(date, el.getAttribute('data-format') || this.format);
         }
         else {
             throw '"' + raw + '"' + ' is not a valid date.';
@@ -93,15 +93,15 @@
      * @param {Array|Element} els An element or array of elements that should be converted
      */
     DateConverter.prototype.run = function(els) {
-        // If els is an array then loop and execute
-        // Otherwise just run the single element
-        if(els instanceof Array) {
+        // If els is an element then convert it
+        // Otherwise it is an array, so loop and execute
+        if(els.nodeType) {
+            this.convert(els);
+        }
+        else {
             for(var i = 0; i < els.length; i += 1) {
                 this.convert(els[i]);
             }
-        }
-        else {
-            this.convert(els);
         }
     };
     
