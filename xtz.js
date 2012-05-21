@@ -43,13 +43,13 @@
      * Will not run until you explicitly call `run` on it
      * So you can call it when your library says the DOM is ready
      *
-     * @param {DateInterface} di An optional interface for your date library, defaults to moment.js
+     * @param {DateInterface} di An optional interface for your date library, defaults to moment.js, false will also make it use the default
      * @param {String} format An optional default format for dates to display with
      */
     function DateConverter(di, format) {
         // If there is a date interface then store it
         // If not, use the default moment.js interface
-        if(typeof di !== 'undefined') {
+        if(typeof di !== 'undefined' && di !== false) {
             this.di = di;
         }
         else {
