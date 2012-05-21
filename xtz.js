@@ -17,6 +17,7 @@
     // If moment is loaded then create an interface for it
     // This will be used as the default date interface
     // http://momentjs.com
+    // Copy and edit this to create your own
     if(typeof moment === 'function') {
         var momentDI = new DateInterface(
             function(date) {
