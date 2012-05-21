@@ -8,8 +8,10 @@
         <p>So this is an element with an American time. The time is <span class='date-normal'>27 January, 2000 10:00:00 CST</span>, got it? Good.</p>
         <p>Now here is the same with a format on the element: <span class='date-normal' data-format='DD/MM/YYYY - HH:mm'>27 January, 2000 10:00:00 CST</span> - good?</p>
         <p>Custom default string: <span class='date-custom-default'>27 January, 2000 10:00:00 CST</span></p>
+        <p>Custom date interface: <span class='date-custom-interface'>27 January, 2000 10:00:00 CST</span></p>
         
         <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/mootools/1.4.5/mootools.js'></script>
+        <script type='text/javascript' src='http://arshaw.com/xdate/downloads/0.7/xdate.js'></script>
         <script type='text/javascript' src='https://raw.github.com/timrwood/moment/1.6.2/moment.js'></script>
         <script type='text/javascript' src='xtz.js'></script>
         <script type='text/javascript'>
@@ -20,6 +22,26 @@
             // Custom default date format
             var customDefault = new xtz.DateConverter(false, '-HH:mm-');
             customDefault.run($$('.date-custom-default'));
+            
+            // Custom date interface
+            // This is using XDate
+            // http://arshaw.com/xdate/
+            var xdateInterface = new xtz.DateInterface(
+                function(date) {
+                    // Parsing
+                    return XDate(date);
+                },
+                function(date, format) {
+                    // Formating
+                    return date.toString(format);
+                },
+                function(date) {
+                    // Validating
+                    return date.valid();
+                }
+            );
+            var customInterface = new xtz.DateConverter(xdateInterface, 'dd MMMM, yyyy \'at\' h:mmtt');
+            customInterface.run($$('.date-custom-interface'));
         </script>
     </body>
 </html>
